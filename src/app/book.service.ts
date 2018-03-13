@@ -8,7 +8,6 @@ interface Book {
     author: string;
     price: number;
 }
-
 const httpOptions = {
     headers: new HttpHeaders({
         'Content-Type': 'application/json'
@@ -17,7 +16,7 @@ const httpOptions = {
 
 @Injectable()
 export class BookService {
-    booksUrl = 'http://192.168.254.102/api/book';
+    booksUrl = 'http://192.168.254.102/api/books';
     constructor(private httpClient: HttpClient, private httpErrorHandler: HttpErrorHandler) {}
 
     getBooks(): Observable<Object> {

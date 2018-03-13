@@ -2,16 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl } from '@angular/forms';
 import { BookService } from './book.service';
+import { DownloadService } from './download.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [BookService]
+  providers: [BookService, DownloadService]
 })
 export class AppComponent implements OnInit {
   title = 'app';
   signInForm: FormGroup;
-  constructor(private bookService: BookService) {}
+  imageUrl: string;
+  constructor(private bookService: BookService, private downloadService: DownloadService) {}
   ngOnInit() {
       this.signInForm = new FormGroup({
           'email': new FormControl(),
@@ -25,9 +27,13 @@ export class AppComponent implements OnInit {
     //     console.log(data);
     // });
     //
-    this.bookService.getBooks()
-    .subscribe(data => {
-        console.log(data);
-    });
+
+    // this.bookService.getBooks()
+    // .subscribe(data => {
+    //     console.log(data);
+    // });
+
+    this.downloadService.getFile();
+
   }
 }
